@@ -31,16 +31,9 @@ This project was built using the following tools and technologies:
 
 ### Icons and Fonts
 - **[Material-UI Icons](https://mui.com/material-ui/material-icons/):** For modern and accessible icons.
-- **[Next Font Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/fonts):** For loading and optimizing fonts.
-
-### Backend and API
-- **Mock API:** Used for fetching dummy data for beers, collections, and comments.
-
 ---
 
 ## 🛠️ How to Run the Project
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repo/beerapp.git
-   cd beerapp
+pnpm install
+pnpm run dev
