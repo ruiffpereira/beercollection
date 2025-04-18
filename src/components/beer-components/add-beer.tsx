@@ -14,7 +14,7 @@ const beerSchema = z.object({
   style: z.string().min(1, 'Style is required'),
   country: z.string().min(1, 'Country is required'),
   createdAt: z.string().min(1, 'Date is required'),
-  avatar: z.string().url('Avatar must be a valid URL'),
+  avatar: z.string().min(1, 'Avatar must be a valid URL'),
 })
 
 type Beer = z.infer<typeof beerSchema>
@@ -166,13 +166,13 @@ export default function AddBeerForm() {
 
           {/* Avatar Field */}
           <div className="flex flex-col md:col-span-2">
-            <label className="text-gray-700 font-medium">Avatar URL</label>
+            <label className="text-gray-700 font-medium">Type</label>
             <input
               {...register('avatar')}
               className={`border p-3 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 errors.avatar ? 'border-red-500' : 'border-gray-300'
               }`}
-              placeholder="Enter avatar URL"
+              placeholder="Type of Beer (e.g., Lager, IPA)"
             />
             {errors.avatar && (
               <p className="text-red-500 text-sm mt-1">
