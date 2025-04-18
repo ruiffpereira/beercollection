@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍺 BeerApp
 
-## Getting Started
+Welcome to **BeerApp**, your go-to platform for exploring, adding, and managing your favorite beers! Whether you're a craft beer enthusiast or just starting your beer journey, BeerApp is here to help you discover and share your passion for beer.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 What is BeerApp?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+BeerApp is a modern web application built to manage and showcase beers. You can:
+- Add new beers with details like name, brewery, style, ABV, IBU, and more.
+- Explore collections of beers, including craft, seasonal, and international options.
+- View and interact with comments from other beer enthusiasts.
+- Enjoy a sleek and responsive design for a seamless user experience.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tools and Technologies Used
 
-## Learn More
+This project was built using the following tools and technologies:
 
-To learn more about Next.js, take a look at the following resources:
+### Frameworks and Libraries
+- **[Next.js](https://nextjs.org/):** The React framework for building fast and scalable web applications.
+- **[React](https://reactjs.org/):** A JavaScript library for building user interfaces.
+- **[React Hook Form](https://react-hook-form.com/):** For managing forms and validations.
+- **[Zod](https://zod.dev/):** For schema validation and type safety.
+- **[React Query](https://tanstack.com/query):** For fetching, caching, and managing server state.
+- **[Swiper.js](https://swiperjs.com/):** For creating beautiful carousels and sliders.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Styling
+- **[Tailwind CSS](https://tailwindcss.com/):** A utility-first CSS framework for rapid UI development.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Icons and Fonts
+- **[Material-UI Icons](https://mui.com/material-ui/material-icons/):** For modern and accessible icons.
+- **[Next Font Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/fonts):** For loading and optimizing fonts.
 
-## Deploy on Vercel
+### Backend and API
+- **Mock API:** Used for fetching dummy data for beers, collections, and comments.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ How to Run the Project
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/beerapp.git
+   cd beerapp
