@@ -4,7 +4,8 @@ const routes = {
   beers: '/beers',
   collections: '/collections',
   about: '/about',
-  beerDetails: (id: string | number) => `/beers/${id}`, // Rota dinâmica
+  beerDBDetails: (id: string | number) => `/beers/${id}`, // Rota dinâmica
+  beerLocalDetails: (id: string | number) => `/beers/local-beer/${id}`, // Rota dinâmica
 }
 
 export type Routes = typeof routes

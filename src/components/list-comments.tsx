@@ -36,7 +36,7 @@ export default function ListComments() {
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
-        className="w-2/3 mx-auto "
+        className=" w-2/3 px-4 pb-10"
         style={{
           paddingBottom: '40px',
         }}

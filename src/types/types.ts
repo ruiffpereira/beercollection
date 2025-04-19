@@ -8,7 +8,7 @@ export interface Beer {
   abv: number
   country: string
   ibu: number
-  idFromDB?: boolean
+  localbeer: boolean
 }
 
 // Definição do tipo para uma coleção individual

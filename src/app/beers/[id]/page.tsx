@@ -1,16 +1,14 @@
 import { getQueryClient } from '@/lib/get-query-client'
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 import { fetchBeerById, queryKeyBeers } from '@/api/fetchBeers'
-import BeerDetails from '@/components/beer-components/beer-details'
+import BeerPage from './beer'
 
-export default async function BeerPage({
+export default async function Beer({
   params,
 }: {
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  console.log('BeerPage', id)
-
   const queryClient = getQueryClient()
 
   // Prefetch da cerveja com o ID
@@ -23,7 +21,11 @@ export default async function BeerPage({
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <BeerDetails id={id} />
+      <div className="w-full bg-zinc-100 p-8 flex-grow">
+        <div className=" max-w-6xl mx-auto">
+          <BeerPage id={id} />
+        </div>
+      </div>
     </HydrationBoundary>
   )
 }

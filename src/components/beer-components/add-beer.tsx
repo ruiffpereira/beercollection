@@ -10,11 +10,9 @@ const beerSchema = z.object({
   description: z.string().min(1, 'Description is required'),
   abv: z.number().min(0, 'ABV must be a positive number'),
   ibu: z.number().min(0, 'IBU must be a positive number'),
-  brewery: z.string().min(1, 'Brewery is required'),
-  style: z.string().min(1, 'Style is required'),
+  ingredients: z.string().min(1, 'Style is required'),
   country: z.string().min(1, 'Country is required'),
   createdAt: z.string().min(1, 'Date is required'),
-  avatar: z.string().min(1, 'Avatar must be a valid URL'),
 })
 
 type Beer = z.infer<typeof beerSchema>
@@ -32,15 +30,20 @@ export default function AddBeerForm() {
   })
 
   const onSubmit = (data: Beer) => {
-    const newBeer = { id: Date.now().toString(), ...data }
+    const newBeer = {
+      id: Date.now().toString(),
+      avatar: '/beer.png',
+      localbeer: true,
+      ...data,
+    }
     addBeer(newBeer) // Atualiza o contexto
     reset()
   }
 
   return (
-    <div className="max-w-full lg:max-w-3xl mx-auto py-4 flex-grow grid place-items-center">
-      <div className="rounded-lg bg-amber-50 p-8 shadow-md">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+    <div className="flex-grow p-8 flex items-center justify-center">
+      <div className="rounded-lg bg-amber-50 p-8 shadow-md w-100">
+        <h1 className="text-3xl font-bold text-gray-800 text-center">
           Add a New Beer
         </h1>
         <form
@@ -62,36 +65,19 @@ export default function AddBeerForm() {
             )}
           </div>
 
-          {/* Brewery Field */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Brewery</label>
-            <input
-              {...register('brewery')}
-              className={`border p-3 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                errors.brewery ? 'border-red-500' : 'border-gray-300'
-              }`}
-              placeholder="Enter brewery name"
-            />
-            {errors.brewery && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.brewery.message}
-              </p>
-            )}
-          </div>
-
           {/* Style Field */}
           <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Style</label>
+            <label className="text-gray-700 font-medium">Ingredients</label>
             <input
-              {...register('style')}
+              {...register('ingredients')}
               className={`border p-3 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                errors.style ? 'border-red-500' : 'border-gray-300'
+                errors.ingredients ? 'border-red-500' : 'border-gray-300'
               }`}
               placeholder="Enter beer style (e.g., IPA, Lager)"
             />
-            {errors.style && (
+            {errors.ingredients && (
               <p className="text-red-500 text-sm mt-1">
-                {errors.style.message}
+                {errors.ingredients.message}
               </p>
             )}
           </div>
@@ -160,23 +146,6 @@ export default function AddBeerForm() {
             {errors.createdAt && (
               <p className="text-red-500 text-sm mt-1">
                 {errors.createdAt.message}
-              </p>
-            )}
-          </div>
-
-          {/* Avatar Field */}
-          <div className="flex flex-col md:col-span-2">
-            <label className="text-gray-700 font-medium">Type</label>
-            <input
-              {...register('avatar')}
-              className={`border p-3 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                errors.avatar ? 'border-red-500' : 'border-gray-300'
-              }`}
-              placeholder="Type of Beer (e.g., Lager, IPA)"
-            />
-            {errors.avatar && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.avatar.message}
               </p>
             )}
           </div>

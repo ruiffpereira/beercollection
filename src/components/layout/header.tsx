@@ -93,7 +93,7 @@ export default function Header() {
               />
             </svg>
           </button>
-          <nav className="flex flex-col gap-4">
+          <nav className="flex flex-col gap-4 w-fit">
             <Link href={routes.addBeer} onClick={() => setIsMenuOpen(false)}>
               <span className="text-md flex-grow-0 w-fit font-bold flex items-center gap-2 relative group cursor-pointer border rounded-sm px-4 h-9 bg-amber-200 hover:bg-amber-50">
                 Add Your Beer!

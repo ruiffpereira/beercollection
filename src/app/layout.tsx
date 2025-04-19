@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Providers from '@/lib/provider'
+import { BeerProvider } from '@/context/BeerContext'
 
 export const metadata: Metadata = {
   title: 'My Beer Collection',
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen">
-        <Providers>{children}</Providers>
+        <Providers>
+          <BeerProvider>{children}</BeerProvider>
+        </Providers>
       </body>
     </html>
   )

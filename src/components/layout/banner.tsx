@@ -15,11 +15,11 @@ export default function Banner() {
             and hidden gems across the globe.
           </p>
         </div>
-        <div className="flex-shrink-0 w-70 -mt-8 md:mt-0 md:w-1/2 relative order-1 md:order-2">
+        <div className="flex-shrink-0 w-70 -mt-8 md:mt-0 md:w-auto relative order-1 md:order-2 flex justify-end">
           <Image
             src={'/beers_banner.png'}
             alt="Beer Banner"
-            className="object-cover rounded-lg mb-4"
+            className="object-cover rounded-lg"
             priority
             width={400}
             height={400}

@@ -19,8 +19,8 @@ const BeerContext = createContext<BeerContextType | undefined>(undefined)
 export function BeerProvider({ children }: { children: ReactNode }) {
   const [beers, setBeers] = useState<Beer[]>([])
 
-  // Carregar os dados do Local Storage no cliente
   useEffect(() => {
+    // Inicializa os dados do localStorage no lado do cliente
     const storedBeers = localStorage.getItem('beers')
     if (storedBeers) {
       setBeers(JSON.parse(storedBeers))

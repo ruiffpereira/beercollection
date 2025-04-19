@@ -2,7 +2,7 @@
 
 import { useBeerContext } from '@/context/BeerContext'
 import { Beer } from '@/types/types'
-import BeerLayoutOnDetail from './layout-beer-on-detail'
+import BeerLayoutOnGrid from './layout-beers-grid'
 
 export default function ListLocalBeers() {
   const { beers } = useBeerContext()
@@ -20,7 +20,7 @@ export default function ListLocalBeers() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-9 p-4 w-2/3 mx-auto">
           {beers.map((beer: Beer) => (
             <div key={beer.id} className="mb-4">
-              <BeerLayoutOnDetail beer={beer} />
+              <BeerLayoutOnGrid beer={beer} />
             </div>
           ))}
         </div>
