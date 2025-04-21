@@ -62,7 +62,7 @@ export default function AddBeerForm({ id }: { id: string }) {
     } else {
       const updatedBeer = { ...data, id, avatar: '/beer.jpg', localbeer: true }
       const updatedBeers = beers.map((b) => (b.id === id ? updatedBeer : b))
-      beers[updatedBeers]
+      updateBeers(updatedBeers)
       localStorage.setItem('beers', JSON.stringify(updatedBeers))
     }
     reset()
