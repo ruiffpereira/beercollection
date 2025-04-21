@@ -3,10 +3,10 @@
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useBeerContext } from '@/context/BeerContext'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import routes from '@/routes/router'
+import { useBeerStore } from '@/store/beerStore'
 
 const beerSchema = z.object({
   id: z.string().optional(),
@@ -22,7 +22,7 @@ const beerSchema = z.object({
 type Beer = z.infer<typeof beerSchema>
 
 export default function AddBeerForm({ id }: { id: string }) {
-  const { beers, addBeer, updateBeers } = useBeerContext()
+  const { beers, addBeer, updateBeer, deleteBeer } = useBeerStore()
   const [notFound, setNotFound] = useState(false)
   const router = useRouter()
 
@@ -61,11 +61,14 @@ export default function AddBeerForm({ id }: { id: string }) {
       addBeer(newBeer)
     } else {
       const updatedBeer = { ...data, id, avatar: '/beer.jpg', localbeer: true }
-      const updatedBeers = beers.map((b) => (b.id === id ? updatedBeer : b))
-      updateBeers(updatedBeers)
-      localStorage.setItem('beers', JSON.stringify(updatedBeers))
+      updateBeer(updatedBeer)
     }
     reset()
+    router.push(routes.collections)
+  }
+
+  const onDelete = (id: number) => {
+    deleteBeer(id.toString())
     router.push(routes.collections)
   }
 
@@ -209,15 +212,26 @@ export default function AddBeerForm({ id }: { id: string }) {
             )}
           </div>
 
-          {/* Submit Button */}
           <div className="md:col-span-2">
             <button
               type="submit"
               className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-all"
             >
-              Add Beer
+              {id === '-1' ? 'Add Beer' : 'Update Beer'}
             </button>
           </div>
+
+          {id !== '-1' && (
+            <div className="md:col-span-2">
+              <button
+                type="button"
+                onClick={() => onDelete(Number(id))}
+                className="w-full bg-red-500 text-white p-3 rounded-lg hover:bg-red-600 transition-all"
+              >
+                Delete Beer
+              </button>
+            </div>
+          )}
         </form>
       </div>
     </div>

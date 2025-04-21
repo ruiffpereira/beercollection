@@ -1,8 +1,8 @@
 'use client'
 
 import { use } from 'react'
-import { useBeerContext } from '@/context/BeerContext'
 import BeerDetails from '@/components/beer-components/beer-details'
+import { useBeerStore } from '@/store/beerStore'
 
 export default function BeerPage({
   params,
@@ -10,7 +10,7 @@ export default function BeerPage({
   params: Promise<{ id: string }>
 }) {
   const resolvedParams = use(params)
-  const { beers } = useBeerContext()
+  const { beers } = useBeerStore()
 
   const beer = beers.find((b) => b.id === resolvedParams.id)
 

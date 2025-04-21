@@ -1,16 +1,11 @@
 'use client'
 
-import { useBeerContext } from '@/context/BeerContext'
 import { Beer } from '@/types/types'
 import BeerLayoutOnGrid from './layout-beers-grid'
-import { useEffect } from 'react'
+import { useBeerStore } from '@/store/beerStore'
 
 export default function ListLocalBeers() {
-  const { beers } = useBeerContext()
-
-  useEffect(() => {
-    console.log('Beers updated in ListLocalBeers:', beers)
-  }, [beers])
+  const { beers } = useBeerStore()
 
   if (!beers.length && beers.length === 0) return null
 
