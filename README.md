@@ -1,39 +1,37 @@
 # 🍺 BeerApp
 
-Welcome to **BeerApp**, your go-to platform for exploring, adding, and managing your favorite beers! Whether you're a craft beer enthusiast or just starting your beer journey, BeerApp is here to help you discover and share your passion for beer.
+Welcome to **BeerApp**, your go-to platform for exploring, adding, and managing your favorite beers!
 
 ---
 
 ## 🚀 What is BeerApp?
 
 BeerApp is a modern web application built to manage and showcase beers. You can:
-- Add new beers with details like name, brewery, style, ABV, IBU, and more.
-- Explore collections of beers, including craft, seasonal, and international options.
-- View and interact with comments from other beer enthusiasts.
-- Enjoy a sleek and responsive design for a seamless user experience.
+- **Add New Beers**: Include details like name, brewery, style, ABV (Alcohol By Volume), IBU (International Bitterness Units), and more.
+- **Explore Beer Collections**: Browse through craft, seasonal, and international beer options.
+- **Interact with Comments**: View and engage with comments from other beer enthusiasts.
+- **Responsive Design**: Enjoy a sleek and user-friendly interface across all devices.
 
 ---
 
-## 🛠️ Tools and Technologies Used
-
-This project was built using the following tools and technologies:
+## 🛠️ Tools and Technologies
 
 ### Frameworks and Libraries
-- **[Next.js](https://nextjs.org/):** The React framework for building fast and scalable web applications.
-- **[React](https://reactjs.org/):** A JavaScript library for building user interfaces.
-- **[React Hook Form](https://react-hook-form.com/):** For managing forms and validations.
-- **[Zod](https://zod.dev/):** For schema validation and type safety.
-- **[React Query](https://tanstack.com/query):** For fetching, caching, and managing server state.
-- **[Swiper.js](https://swiperjs.com/):** For creating beautiful carousels and sliders.
+- **Next.js**  **React Hook Form**: Simplifies form handling and validation for adding and editing beers.
+- **Zod**: Provides schema validation and type safety for form inputs and API data.
+- **React Query**: Handles server-side data fetching, caching, and synchronization.
+- **Swiper.js**: Used for creating interactive carousels and sliders for beer collections.
 
 ### Styling
-- **[Tailwind CSS](https://tailwindcss.com/):** A utility-first CSS framework for rapid UI development.
+- **Tailwind CSS**: Provides utility-first classes for rapid and consistent styling across the app.
 
 ### Icons and Fonts
-- **[Material-UI Icons](https://mui.com/material-ui/material-icons/):** For modern and accessible icons.
+- **Material-UI Icons**: Used for adding modern and accessible icons to enhance the user interface.
+
 ---
 
 ## 🛠️ How to Run the Project
 
-pnpm install
-pnpm run dev
+1. Install dependencies:
+   ```bash
+   pnpm install
