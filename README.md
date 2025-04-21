@@ -17,7 +17,9 @@ BeerApp is a modern web application built to manage and showcase beers. You can:
 ## 🛠️ Tools and Technologies
 
 ### Frameworks and Libraries
-- **Next.js**  **React Hook Form**: Simplifies form handling and validation for adding and editing beers.
+- **Next.js**: Used as the main framework for building the app, enabling server-side rendering and static site generation.
+- **React**: For creating reusable UI components and managing the user interface.
+- **React Hook Form**: Simplifies form handling and validation for adding and editing beers.
 - **Zod**: Provides schema validation and type safety for form inputs and API data.
 - **React Query**: Handles server-side data fetching, caching, and synchronization.
 - **Swiper.js**: Used for creating interactive carousels and sliders for beer collections.
