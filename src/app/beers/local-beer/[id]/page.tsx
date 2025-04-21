@@ -9,10 +9,10 @@ export default function BeerPage({
 }: {
   params: Promise<{ id: string }>
 }) {
-  const resolvedParams = use(params) // Resolve a Promise de params
-  const { beers } = useBeerContext() // Acessa as cervejas do contexto
+  const resolvedParams = use(params)
+  const { beers } = useBeerContext()
 
-  const beer = beers.find((b) => b.id === resolvedParams.id) // Busca a cerveja pelo ID
+  const beer = beers.find((b) => b.id === resolvedParams.id)
 
   if (!beers.length) {
     return (

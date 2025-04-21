@@ -42,15 +42,9 @@ export default function Header() {
         </div>
 
         <nav className="hidden md:flex gap-4 items-center ml-auto">
-          <Link href={routes.addBeer}>
+          <Link href={routes.addBeer('-1')}>
             <span className="text-md font-bold flex items-center gap-2 relative group cursor-pointer border rounded-sm px-4 h-9 bg-amber-200 hover:bg-amber-50">
               Add Your Beer!
-            </span>
-          </Link>
-          <Link href={routes.beers}>
-            <span className="relative group cursor-pointer text-md font-bold">
-              Beers
-              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
             </span>
           </Link>
           <Link href={routes.collections}>
@@ -94,7 +88,10 @@ export default function Header() {
             </svg>
           </button>
           <nav className="flex flex-col gap-4 w-fit">
-            <Link href={routes.addBeer} onClick={() => setIsMenuOpen(false)}>
+            <Link
+              href={routes.addBeer('-1')}
+              onClick={() => setIsMenuOpen(false)}
+            >
               <span className="text-md flex-grow-0 w-fit font-bold flex items-center gap-2 relative group cursor-pointer border rounded-sm px-4 h-9 bg-amber-200 hover:bg-amber-50">
                 Add Your Beer!
               </span>
@@ -102,12 +99,6 @@ export default function Header() {
             <Link href={routes.home} onClick={() => setIsMenuOpen(false)}>
               <span className="relative group cursor-pointer text-md font-bold">
                 Home
-                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
-              </span>
-            </Link>
-            <Link href={routes.beers} onClick={() => setIsMenuOpen(false)}>
-              <span className="relative group cursor-pointer text-md font-bold">
-                Beers
                 <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
               </span>
             </Link>

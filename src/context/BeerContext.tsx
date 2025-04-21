@@ -12,6 +12,7 @@ import {
 interface BeerContextType {
   beers: Beer[]
   addBeer: (beer: Beer) => void
+  updateBeers: (beers: Beer[]) => void
 }
 
 const BeerContext = createContext<BeerContextType | undefined>(undefined)
@@ -20,7 +21,6 @@ export function BeerProvider({ children }: { children: ReactNode }) {
   const [beers, setBeers] = useState<Beer[]>([])
 
   useEffect(() => {
-    // Inicializa os dados do localStorage no lado do cliente
     const storedBeers = localStorage.getItem('beers')
     if (storedBeers) {
       setBeers(JSON.parse(storedBeers))
@@ -33,8 +33,14 @@ export function BeerProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('beers', JSON.stringify(updatedBeers))
   }
 
+  const updateBeers = (beers: Beer[]) => {
+    setBeers(beers)
+    localStorage.setItem('beers', JSON.stringify(beers))
+    console.log('Updated beers in local storage:', beers)
+  }
+
   return (
-    <BeerContext.Provider value={{ beers, addBeer }}>
+    <BeerContext.Provider value={{ beers, addBeer, updateBeers }}>
       {children}
     </BeerContext.Provider>
   )

@@ -1,7 +1,7 @@
 import { getQueryClient } from '@/lib/get-query-client'
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 import { fetchBeerById, queryKeyBeers } from '@/api/fetchBeers'
-import BeerPage from './beer'
+import BeerDetails from '@/components/beer-components/beer-details'
 
 export default async function Beer({
   params,
@@ -11,21 +11,49 @@ export default async function Beer({
   const { id } = await params
   const queryClient = getQueryClient()
 
-  // Prefetch da cerveja com o ID
-  await queryClient.prefetchQuery({
-    queryKey: [queryKeyBeers, id],
-    queryFn: () => fetchBeerById(id),
-  })
+  try {
+    // Busca a cerveja pelo ID
+    const beer = await queryClient.fetchQuery({
+      queryKey: [queryKeyBeers, id],
+      queryFn: () => fetchBeerById(id),
+    })
 
-  const dehydratedState = dehydrate(queryClient)
+    if (!beer) {
+      // Caso a cerveja não seja encontrada
+      return (
+        <div className="w-full bg-zinc-100 p-8 flex-grow">
+          <div className="max-w-6xl mx-auto text-center">
+            <h1 className="text-3xl font-bold text-gray-800">Beer Not Found</h1>
+            <p className="text-gray-600">
+              The beer you are looking for does not exist.
+            </p>
+          </div>
+        </div>
+      )
+    }
 
-  return (
-    <HydrationBoundary state={dehydratedState}>
+    const dehydratedState = dehydrate(queryClient)
+
+    return (
+      <HydrationBoundary state={dehydratedState}>
+        <div className="w-full bg-zinc-100 p-8 flex-grow">
+          <div className="max-w-6xl mx-auto">
+            <BeerDetails beer={beer} />
+          </div>
+        </div>
+      </HydrationBoundary>
+    )
+  } catch (error) {
+    console.error('Error fetching beer:', error)
+    return (
       <div className="w-full bg-zinc-100 p-8 flex-grow">
-        <div className=" max-w-6xl mx-auto">
-          <BeerPage id={id} />
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="text-3xl font-bold text-gray-800">Beer Not Found</h1>
+          <p className="text-gray-600">
+            The beer you are looking for does not exist.
+          </p>
         </div>
       </div>
-    </HydrationBoundary>
-  )
+    )
+  }
 }

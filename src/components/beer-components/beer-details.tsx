@@ -2,12 +2,35 @@
 
 import Image from 'next/image'
 import { Beer } from '@/types/types'
+import Link from 'next/link'
+import routes from '@/routes/router'
+import { useState, useEffect } from 'react'
 
 export default function BeerDetails({ beer }: { beer: Beer }) {
+  const [beerFounded, setBeerFounded] = useState<Beer | null>(null)
+
+  useEffect(() => {
+    const storedBeers = localStorage.getItem('beers')
+    if (storedBeers) {
+      const beers: Beer[] = JSON.parse(storedBeers)
+      const foundBeer = beers.find((b) => b.id === beer.id)
+      setBeerFounded(foundBeer || null)
+    }
+  }, [beer])
+
   return (
     <>
       <div className="flex gap-8 flex-col">
-        <h1 className="text-3xl font-bold">{beer.name}</h1>
+        <div className="flex gap-2 items-center justify-between">
+          <h1 className="text-3xl font-bold">{beer.name}</h1>
+          {beerFounded && (
+            <Link href={routes.addBeer(beer.id)}>
+              <div className="text-md font-bold flex items-center gap-2 relative group cursor-pointer rounded-sm px-4 h-7 bg-amber-200 hover:bg-amber-50 ">
+                Edit
+              </div>
+            </Link>
+          )}
+        </div>
         <div className="flex gap-4">
           <Image
             src={beer.avatar}

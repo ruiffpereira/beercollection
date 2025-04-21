@@ -1,11 +1,8 @@
 import { Collection } from '@/types/types'
 
-// Query key para React Query
 export const queryKeyCollections = ['collections']
 
-// Função para buscar todas as coleções
 export async function fetchCollections(): Promise<Collection[]> {
-  // Dummy data
   const dummyCollections: Collection[] = [
     {
       id: '1',
@@ -34,7 +31,6 @@ export async function fetchCollections(): Promise<Collection[]> {
     },
   ]
 
-  // Simula um atraso para imitar uma chamada de API
   return new Promise((resolve) => {
     setTimeout(() => resolve(dummyCollections), 500)
   })

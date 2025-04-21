@@ -15,8 +15,20 @@ export default function ListBeers() {
     queryFn: fetchBeers,
   })
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error fetching beers</div>
+  if (isLoading)
+    return (
+      <div className="flex flex-col gap-7 py-20 bg-gray-100">
+        <h1 className="text-center font-bold text-5xl">Loading...</h1>
+      </div>
+    )
+  if (error)
+    return (
+      <div className="flex flex-col gap-7 py-20 bg-gray-100">
+        <h1 className="text-center font-bold text-5xl">
+          Error Fetching Beerss
+        </h1>
+      </div>
+    )
 
   return (
     <div className="flex flex-col gap-7 py-20 bg-gray-100">

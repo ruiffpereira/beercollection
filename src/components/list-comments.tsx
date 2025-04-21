@@ -9,13 +9,33 @@ import 'swiper/swiper-bundle.css'
 import { Autoplay, Pagination } from 'swiper/modules'
 
 export default function ListComments() {
-  const { data: comments, isLoading } = useQuery({
+  const {
+    data: comments,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: queryKeyComments,
     queryFn: fetchComments,
   })
 
-  if (isLoading) return <div>Loading...</div>
-  if (!comments || comments.length === 0) return <div>No comments found</div>
+  if (isLoading)
+    <div className="py-20 flex flex-col gap-10">
+      <h1 className="text-center font-bold text-5xl">Loading Comments</h1>
+    </div>
+  if (error)
+    return (
+      <div className="py-20 flex flex-col gap-10">
+        <h1 className="text-center font-bold text-5xl">
+          Error Fetching Comments
+        </h1>
+      </div>
+    )
+  if (!comments || comments.length === 0)
+    return (
+      <div className="py-20 flex flex-col gap-10">
+        <h1 className="text-center font-bold text-5xl">No comments found</h1>
+      </div>
+    )
 
   return (
     <div className="py-20 flex flex-col gap-10">

@@ -9,6 +9,7 @@ import routes from '@/routes/router'
 // Componente BeerLayout
 export default function BeerLayoutOnGrid({ beer }: { beer: Beer }) {
   const isLocalBeer = beer.localbeer ?? false
+
   return (
     <div>
       <Link

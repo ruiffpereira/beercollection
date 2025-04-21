@@ -4,8 +4,12 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useBeerContext } from '@/context/BeerContext'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import routes from '@/routes/router'
 
 const beerSchema = z.object({
+  id: z.string().optional(),
   name: z.string().min(1, 'Name is required'),
   description: z.string().min(1, 'Description is required'),
   abv: z.number().min(0, 'ABV must be a positive number'),
@@ -17,8 +21,10 @@ const beerSchema = z.object({
 
 type Beer = z.infer<typeof beerSchema>
 
-export default function AddBeerForm() {
-  const { addBeer } = useBeerContext()
+export default function AddBeerForm({ id }: { id: string }) {
+  const { beers, addBeer, updateBeers } = useBeerContext()
+  const [notFound, setNotFound] = useState(false)
+  const router = useRouter()
 
   const {
     register,
@@ -29,22 +35,58 @@ export default function AddBeerForm() {
     resolver: zodResolver(beerSchema),
   })
 
-  const onSubmit = (data: Beer) => {
-    const newBeer = {
-      id: Date.now().toString(),
-      avatar: '/beer.png',
-      localbeer: true,
-      ...data,
+  useEffect(() => {
+    if (id === '-1') {
+      reset()
+      setNotFound(false)
+    } else {
+      const beerToEdit = beers.find((b) => b.id === id)
+      if (beerToEdit) {
+        reset(beerToEdit)
+        setNotFound(false)
+      } else {
+        setNotFound(true)
+      }
     }
-    addBeer(newBeer) // Atualiza o contexto
+  }, [id, beers, reset])
+
+  const onSubmit = (data: Beer) => {
+    if (id === '-1') {
+      const newBeer = {
+        id: Date.now().toString(),
+        avatar: '/beer.jpg',
+        localbeer: true,
+        ...data,
+      }
+      addBeer(newBeer)
+    } else {
+      const updatedBeer = { ...data, id, avatar: '/beer.jpg', localbeer: true }
+      const updatedBeers = beers.map((b) => (b.id === id ? updatedBeer : b))
+      beers[updatedBeers]
+      localStorage.setItem('beers', JSON.stringify(updatedBeers))
+    }
     reset()
+    router.push(routes.collections)
+  }
+
+  if (notFound) {
+    return (
+      <div className="flex-grow p-8 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-800">Beer Not Found</h1>
+          <p className="text-gray-600">
+            The beer you are trying to edit does not exist.
+          </p>
+        </div>
+      </div>
+    )
   }
 
   return (
     <div className="flex-grow p-8 flex items-center justify-center">
       <div className="rounded-lg bg-amber-50 p-8 shadow-md w-100">
         <h1 className="text-3xl font-bold text-gray-800 text-center">
-          Add a New Beer
+          {id === '-1' ? 'Add a New Beer' : 'Edit Beer'}
         </h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
