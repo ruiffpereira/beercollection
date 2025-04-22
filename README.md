@@ -16,19 +16,23 @@ BeerApp is a modern web application built to manage and showcase beers. You can:
 
 ## 🛠️ Tools and Technologies
 
-### Frameworks and Libraries
-- **Next.js**: Used as the main framework for building the app, enabling server-side rendering and static site generation.
-- **React**: For creating reusable UI components and managing the user interface.
-- **React Hook Form**: Simplifies form handling and validation for adding and editing beers.
-- **Zod**: Provides schema validation and type safety for form inputs and API data.
-- **React Query**: Handles server-side data fetching, caching, and synchronization.
-- **Swiper.js**: Used for creating interactive carousels and sliders for beer collections.
+🧾 Form Handling
+I used React Hook Form to help structure and manage the form more efficiently.
 
-### Styling
-- **Tailwind CSS**: Provides utility-first classes for rapid and consistent styling across the app.
+✅ Schema Validation
+For validation, I went with Zod, which ensures all data is correctly formatted when creating or updating a beer. It gives me confidence that everything submitted is valid.
 
-### Icons and Fonts
-- **Material-UI Icons**: Used for adding modern and accessible icons to enhance the user interface.
+🌀 Carousel
+I implemented Swiper to create a smooth carousel for displaying user comments. It’s set up with autoplay to cycle through multiple reviews seamlessly.
+
+🔄 Data Fetching & Caching
+React Query handles all my API requests. It keeps the data fresh and up-to-date, and I can easily trigger updates from anywhere using mutation keys.
+
+📦 Global State
+I used Zustand to manage a global state of the created beers. This allows me to access them from any part of the app without passing props around.
+
+🎨 Styling
+Styling was done with Tailwind CSS, which helped me build the UI quickly and easily without writing tons of custom CSS.
 
 ---
 
